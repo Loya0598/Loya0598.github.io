@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        MaskGAN - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> reading/coding </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar1.jpg" />
+        </div>
+        <div class="name">
+            <i>Yating Luo</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MaskGAN"><span class="toc-text">MaskGAN</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#论文链接：https-arxiv-org-pdf-1801-07736-pdf"><span class="toc-text">论文链接：https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;1801.07736.pdf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#论文代码：https-github-com-tensorflow-models-tree-master-research-maskgan"><span class="toc-text">论文代码：https:&#x2F;&#x2F;github.com&#x2F;tensorflow&#x2F;models&#x2F;tree&#x2F;master&#x2F;research&#x2F;maskgan</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#阅读时间：2020-06-18"><span class="toc-text">阅读时间：2020.06.18</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1、Simple-Intro"><span class="toc-text">1、Simple Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、Architecture"><span class="toc-text">2、Architecture</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、Training"><span class="toc-text">3、Training</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、Evaluation-amp-Experiment"><span class="toc-text">4、Evaluation &amp; Experiment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、一些讨论"><span class="toc-text">5、一些讨论</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> reading/coding </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        MaskGAN
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2020-06-19 20:30:38</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#generative model" title="generative model">generative model</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h2 id="MaskGAN"><a href="#MaskGAN" class="headerlink" title="MaskGAN"></a>MaskGAN</h2><h3 id="论文链接：https-arxiv-org-pdf-1801-07736-pdf"><a href="#论文链接：https-arxiv-org-pdf-1801-07736-pdf" class="headerlink" title="论文链接：https://arxiv.org/pdf/1801.07736.pdf"></a>论文链接：<a href="https://arxiv.org/pdf/1801.07736.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1801.07736.pdf</a></h3><h3 id="论文代码：https-github-com-tensorflow-models-tree-master-research-maskgan"><a href="#论文代码：https-github-com-tensorflow-models-tree-master-research-maskgan" class="headerlink" title="论文代码：https://github.com/tensorflow/models/tree/master/research/maskgan"></a>论文代码：<a href="https://github.com/tensorflow/models/tree/master/research/maskgan" target="_blank" rel="noopener">https://github.com/tensorflow/models/tree/master/research/maskgan</a></h3><h3 id="阅读时间：2020-06-18"><a href="#阅读时间：2020-06-18" class="headerlink" title="阅读时间：2020.06.18"></a>阅读时间：2020.06.18</h3><hr>
+<h3 id="1、Simple-Intro"><a href="#1、Simple-Intro" class="headerlink" title="1、Simple Intro"></a>1、Simple Intro</h3><ul>
+<li>他们的任务模式是填空，不再是从头生成完整句子</li>
+<li>他们采用了actor-critic的框架去计算每一步的reward</li>
+<li>他们采用了一些新的evaluation metrics对他们的模型进行评估</li>
+</ul>
+<h3 id="2、Architecture"><a href="#2、Architecture" class="headerlink" title="2、Architecture"></a>2、Architecture</h3><ul>
+<li><p>Generator</p>
+<ul>
+<li>Model: $G(x_t) = P(\hat{x}_t | \hat{x}_1, …, \hat{x}_<br>{t - 1}, m(x))$</li>
+<li>通过语言模型生成填空后的句子，比如“I want _ _ apple” 输出 “I want to pick apple”</li>
+</ul>
+</li>
+<li><p>Discriminator</p>
+<ul>
+<li><p>Model: $D_{\phi}(\tilde{x_t}|\tilde{x}_{0:T}, m(x)) = P(\tilde{x}_t = x_t^{real} | \tilde{x}_{0:T}, m(x))$</p>
+</li>
+<li><p>通过同样的语言模型，不再生成句子，而是取最后的分布概率中的正确token的概率，比如输入是”I want to pick apple”，真实数据是“I want this fresh apple”，经过语言模型我们会得到输出时每个token的一个分布概率，比如对于第一个mask的空位，得到的分布概率是{to: 0.6，this: 0.2，that: 0.2}，那么discriminator在这个token上的输出既是0.2。</p>
+</li>
+<li><p>Reward: $r_t = logD_{\phi}(\tilde{x}_t | \tilde{x}_{0:T}, m(x))$ 即为概率值取log</p>
+</li>
+<li>Reward at each position: $R_t = \sum_{s = t}^T \gamma^sr_s$</li>
+</ul>
+</li>
+</ul>
+<h3 id="3、Training"><a href="#3、Training" class="headerlink" title="3、Training"></a>3、Training</h3><ul>
+<li><p>Generator:</p>
+<ul>
+<li>Reward at step t: $\mathbb{E}_G[R_t]$<ul>
+<li>因为sample这个操作不可导（不可导的解释可以参照这一篇文章：<a href="https://zhuanlan.zhihu.com/p/29168803" target="_blank" rel="noopener">Role of RL in text generation by GAN</a>），所以我们可以利用RL中的policy gradient，将每一步的sample类比于RL中的采取动作，$\theta$即为我们的策略参数，我们期望能调整$\theta$来最大化reward。</li>
+</ul>
+</li>
+<li>Gradient of Reward at step t:<ul>
+<li>$\nabla_{\theta}\mathbb{E}_{G}[R_t] = \mathbb{E}_{G}[R_t\nabla_{\theta}logG_{\theta}(\hat{x}_t)]$</li>
+</ul>
+</li>
+<li>MiniBatch Update at each step(主要是想说明在实际用batch进行更新时loss要如何写):<ul>
+<li>Loss = $\frac{1}{N}\sum_{i = 1}^N(R_tlog(G_{\theta}(\hat{x}_t)))$</li>
+<li>因为我们的x可以看成是从G中采样的，所以对于上面那个gradient的期望，我们直接计算后半部分就可以了</li>
+</ul>
+</li>
+<li>Gradient: <img src="/.com//maskgan1.png" alt="alt"></li>
+</ul>
+</li>
+<li><p>Discriminator:</p>
+<ul>
+<li>Gradient: <img src="/.com//maskgan2.png" alt="alt"></li>
+</ul>
+</li>
+<li><p>Critic:</p>
+<ul>
+<li>$b_t = V^G(x_{1:t})$</li>
+<li>to reduce the variance of this gradient estimator</li>
+</ul>
+</li>
+<li><p>Alternativa approaches for long sequences and large vocabularies</p>
+<ul>
+<li>long sequences:    先在T这个长度将模型训练到收敛，再将其迁移到长度（T+1）上</li>
+<li>Large vocabularies: 在生成每个token时，discriminator对每个可能的采样都输出reward，然后利用这个reward相应的去更新generator</li>
+</ul>
+<blockquote>
+<p>这样代码如何实现？</p>
+</blockquote>
+</li>
+<li><p>Training Details:</p>
+<blockquote>
+<p>First we train a language model using standard maximum likelihood training. We then use the pretrained language model weights for the seq2seq encoder and decoder modules. </p>
+<p>With these language models, we now pretrain the seq2seq model on the in-filling task using maximum likelihood</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="4、Evaluation-amp-Experiment"><a href="#4、Evaluation-amp-Experiment" class="headerlink" title="4、Evaluation &amp; Experiment"></a>4、Evaluation &amp; Experiment</h3><ul>
+<li><p>Datasets:</p>
+<ul>
+<li><p>The Penn Treebank(PTB)</p>
+<blockquote>
+<p>We first pretrain the commonly-used variational LSTM language model with parameter dimensions common to MaskGAN following Gal &amp; Ghahramani (2016) to a validation perplexity of 78. After then loading the weights from the language model into the MaskGAN generator we further pretrain with a masking rate of 0.5 (half the text blanked) to a validation perplexity of 55.3. Finally, we then pretrain the discriminator on the samples produced from the current generator and real training text.</p>
+</blockquote>
+</li>
+<li><p>IMDB Movie Dataset</p>
+<blockquote>
+<p>Identical to the training process in PTB, we pretrain a language model to a validation perplexity of 105.6. After then loading the weights from the language model into the MaskGAN generator we further pretrain with masking rate of 0.5 (half the text blanked) to a validation perplexity of 87.1. Finally, we then pretrain the discriminator on the samples produced from the current generator and real training text.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Evaluation</p>
+<ul>
+<li>perplexity</li>
+<li>Unique n-grams<ul>
+<li>用这个说明mode-collapse的问题</li>
+</ul>
+</li>
+<li>Human Evaluation<ul>
+<li><img src="/.com//maskgan3.png" alt="alt"></li>
+<li><img src="/.com//maskgan4.png" alt="alt">    </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="5、一些讨论"><a href="#5、一些讨论" class="headerlink" title="5、一些讨论"></a>5、一些讨论</h3><blockquote>
+<ol>
+<li><p>如果从训练就没有mask，那么这个应该就转变成了一个以lstm为discriminator的普通gan，那么mask在其中起到了一个什么作用？</p>
+</li>
+<li><p>mode collapse是通过in-filling这种任务类型解决的？</p>
+</li>
+<li><p>Appendix中提到一个matching syntax at boundaries，这个有什么解决办法吗？</p>
+</li>
+</ol>
+</blockquote>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud" target="_blank" rel="noopener">AirCloud</a></p>
+</footer>
+
+
+
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            processEscapes: true
+          }
+        });
+      </script>
+    
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+            tex2jax: {
+              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+          });
+      </script>
+    
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+              var all = MathJax.Hub.getAllJax(), i;
+              for(i=0; i < all.length; i += 1) {
+                  all[i].SourceElement().parentNode.className += ' has-jax';
+              }
+          });
+      </script>
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        if( '' || '')
+        var disqus_config = function () {
+            this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://loya-blog.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+
+
+
+</html>
