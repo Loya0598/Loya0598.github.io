@@ -151,20 +151,19 @@
 <h3 id="2、Architecture"><a href="#2、Architecture" class="headerlink" title="2、Architecture"></a>2、Architecture</h3><ul>
 <li><p>Generator</p>
 <ul>
-<li>Model: $G(x_t) = P(\hat{x}<em>t | \hat{x}_1, …, \hat{x}</em><br>{t - 1}, m(x))$</li>
+<li>Model: $G(x_t) = P(\hat{x}_t | \hat{x}_1, …, \hat{x}_<br>{t - 1}, m(x))$</li>
 <li>通过语言模型生成填空后的句子，比如“I want _ _ apple” 输出 “I want to pick apple”</li>
 </ul>
 </li>
 <li><p>Discriminator</p>
 <ul>
-<li><p>Model: $D_{\phi}(\tilde{x_t}|\tilde{x}<em>{0:T}, m(x)) = P(\tilde{x}_t = x_t^{real} | \tilde{x}</em>{0:T}, m(x))$</p>
+<li><p>Model: $D_{\phi}(\tilde{x_t}|\tilde{x}_{0:T}, m(x)) = P(\tilde{x}_t = x_t^{real} | \tilde{x}_{0:T}, m(x))$</p>
 </li>
 <li><p>通过同样的语言模型，不再生成句子，而是取最后的分布概率中的正确token的概率，比如输入是”I want to pick apple”，真实数据是“I want this fresh apple”，经过语言模型我们会得到输出时每个token的一个分布概率，比如对于第一个mask的空位，得到的分布概率是{to: 0.6，this: 0.2，that: 0.2}，那么discriminator在这个token上的输出既是0.2。</p>
 </li>
-<li><p>Reward: $r_t = logD_{\phi}(\tilde{x}<em>t | \tilde{x}</em>{0:T}, m(x))$ 即为概率值取log</p>
+<li><p>Reward: $r_t = logD_{\phi}(\tilde{x}_t | \tilde{x}_{0:T}, m(x))$ 即为概率值取log</p>
 </li>
-<li><p>Reward at each position: $R_t = \sum_{s = t}^T \gamma^sr_s$</p>
-</li>
+<li>Reward at each position: $R_t = \sum_{s = t}^T \gamma^sr_s$</li>
 </ul>
 </li>
 </ul>
@@ -176,7 +175,7 @@
 </ul>
 </li>
 <li>Gradient of Reward at step t:<ul>
-<li>$\nabla_{\theta}\mathbb{E}<em>{G}[R_t] = \mathbb{E}</em>{G}[R_t\nabla_{\theta}logG_{\theta}(\hat{x}_t)]$</li>
+<li>$\nabla_{\theta}\mathbb{E}_{G}[R_t] = \mathbb{E}_{G}[R_t\nabla_{\theta}logG_{\theta}(\hat{x}_t)]$</li>
 </ul>
 </li>
 <li>MiniBatch Update at each step(主要是想说明在实际用batch进行更新时loss要如何写):<ul>
@@ -184,12 +183,12 @@
 <li>因为我们的x可以看成是从G中采样的，所以对于上面那个gradient的期望，我们直接计算后半部分就可以了</li>
 </ul>
 </li>
-<li>Gradient: ![截屏2020-06-18 23.45.18](/Users/loya/Library/Application Support/typora-user-images/截屏2020-06-18 23.45.18.png)</li>
+<li>Gradient: <img src="/Users/loya/Library/Application Support/typora-user-images/截屏2020-06-18 23.45.18.png" alt="截屏2020-06-18 23.45.18"></li>
 </ul>
 </li>
 <li><p>Discriminator:</p>
 <ul>
-<li>Gradient: ![截屏2020-06-18 23.45.41](/Users/loya/Library/Application Support/typora-user-images/截屏2020-06-18 23.45.41.png)</li>
+<li>Gradient: <img src="/Users/loya/Library/Application Support/typora-user-images/截屏2020-06-18 23.45.41.png" alt="截屏2020-06-18 23.45.41"></li>
 </ul>
 </li>
 <li><p>Critic:</p>
@@ -237,8 +236,8 @@
 </ul>
 </li>
 <li>Human Evaluation<ul>
-<li>![截屏2020-06-19 20.12.20](/Users/loya/Library/Application Support/typora-user-images/截屏2020-06-19 20.12.20.png)</li>
-<li>![截屏2020-06-19 20.12.33](/Users/loya/Library/Application Support/typora-user-images/截屏2020-06-19 20.12.33.png)    </li>
+<li><img src="/Users/loya/Library/Application Support/typora-user-images/截屏2020-06-19 20.12.20.png" alt="截屏2020-06-19 20.12.20"></li>
+<li><img src="/Users/loya/Library/Application Support/typora-user-images/截屏2020-06-19 20.12.33.png" alt="截屏2020-06-19 20.12.33">    </li>
 </ul>
 </li>
 </ul>
