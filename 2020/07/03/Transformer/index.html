@@ -93,7 +93,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Illustrated-Transformer文章阅读"><span class="toc-text">The Illustrated Transformer文章阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#网页链接：http-jalammar-github-io-illustrated-transformer"><span class="toc-text">网页链接：http:&#x2F;&#x2F;jalammar.github.io&#x2F;illustrated-transformer&#x2F;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#阅读时间：2020-07-03"><span class="toc-text">阅读时间：2020.07.03</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Simple-Intro"><span class="toc-text">Simple Intro</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#A-High-Level-Look"><span class="toc-text">A High-Level Look</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Bringing-The-Tensors-Into-The-Picture"><span class="toc-text">Bringing The Tensors Into The Picture</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Representing-The-Order-of-The-Sequence-Using-Positional-Encoding"><span class="toc-text">Representing The Order of The Sequence Using Positional Encoding</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#The-Residuals"><span class="toc-text">The Residuals</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#The-Decoder-Side"><span class="toc-text">The Decoder Side</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#The-Loss-Function"><span class="toc-text">The Loss Function</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Illustrated-Transformer文章阅读"><span class="toc-text">The Illustrated Transformer文章阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#网页链接：http-jalammar-github-io-illustrated-transformer"><span class="toc-text">网页链接：http:&#x2F;&#x2F;jalammar.github.io&#x2F;illustrated-transformer&#x2F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#阅读时间：2020-07-03"><span class="toc-text">阅读时间：2020.07.03</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Simple-Intro"><span class="toc-text">1. Simple Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-A-High-Level-Look"><span class="toc-text">2. A High-Level Look</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Bringing-The-Tensors-Into-The-Picture"><span class="toc-text">3. Bringing The Tensors Into The Picture</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Representing-The-Order-of-The-Sequence-Using-Positional-Encoding"><span class="toc-text">4. Representing The Order of The Sequence Using Positional Encoding</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-The-Residuals"><span class="toc-text">5. The Residuals</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-The-Decoder-Side"><span class="toc-text">6. The Decoder Side</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-The-Loss-Function"><span class="toc-text">7. The Loss Function</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -142,13 +142,13 @@
 </span>
     </div>
     <div class="post-content ">
-        <h3 id="The-Illustrated-Transformer文章阅读"><a href="#The-Illustrated-Transformer文章阅读" class="headerlink" title="The Illustrated Transformer文章阅读"></a>The Illustrated Transformer文章阅读</h3><h4 id="网页链接：http-jalammar-github-io-illustrated-transformer"><a href="#网页链接：http-jalammar-github-io-illustrated-transformer" class="headerlink" title="网页链接：http://jalammar.github.io/illustrated-transformer/"></a>网页链接：<a href="http://jalammar.github.io/illustrated-transformer/" target="_blank" rel="noopener">http://jalammar.github.io/illustrated-transformer/</a></h4><h4 id="阅读时间：2020-07-03"><a href="#阅读时间：2020-07-03" class="headerlink" title="阅读时间：2020.07.03"></a>阅读时间：2020.07.03</h4><hr>
-<h4 id="Simple-Intro"><a href="#Simple-Intro" class="headerlink" title="Simple Intro"></a>Simple Intro</h4><ul>
+        <h2 id="The-Illustrated-Transformer文章阅读"><a href="#The-Illustrated-Transformer文章阅读" class="headerlink" title="The Illustrated Transformer文章阅读"></a>The Illustrated Transformer文章阅读</h2><h3 id="网页链接：http-jalammar-github-io-illustrated-transformer"><a href="#网页链接：http-jalammar-github-io-illustrated-transformer" class="headerlink" title="网页链接：http://jalammar.github.io/illustrated-transformer/"></a>网页链接：<a href="http://jalammar.github.io/illustrated-transformer/" target="_blank" rel="noopener">http://jalammar.github.io/illustrated-transformer/</a></h3><h3 id="阅读时间：2020-07-03"><a href="#阅读时间：2020-07-03" class="headerlink" title="阅读时间：2020.07.03"></a>阅读时间：2020.07.03</h3><hr>
+<h3 id="1-Simple-Intro"><a href="#1-Simple-Intro" class="headerlink" title="1. Simple Intro"></a>1. Simple Intro</h3><ul>
 <li>A model that uses attention to boost the speed</li>
 <li>Outperforms the <strong>Google Neural Machine Translation model</strong></li>
 <li>Parallelization</li>
 </ul>
-<h4 id="A-High-Level-Look"><a href="#A-High-Level-Look" class="headerlink" title="A High-Level Look"></a>A High-Level Look</h4><ul>
+<h3 id="2-A-High-Level-Look"><a href="#2-A-High-Level-Look" class="headerlink" title="2. A High-Level Look"></a>2. A High-Level Look</h3><ul>
 <li><p>Sentence1 $\rightarrow$ <strong>Model</strong> $\rightarrow$ Sentence2</p>
 </li>
 <li><p>Sentence1 $\rightarrow$ <strong>Encoder</strong> $\rightarrow$ <strong>Decoder</strong> $\rightarrow$ Sentence2</p>
@@ -165,7 +165,7 @@
 </blockquote>
 </li>
 </ul>
-<h4 id="Bringing-The-Tensors-Into-The-Picture"><a href="#Bringing-The-Tensors-Into-The-Picture" class="headerlink" title="Bringing The Tensors Into The Picture"></a>Bringing The Tensors Into The Picture</h4><ul>
+<h3 id="3-Bringing-The-Tensors-Into-The-Picture"><a href="#3-Bringing-The-Tensors-Into-The-Picture" class="headerlink" title="3. Bringing The Tensors Into The Picture"></a>3. Bringing The Tensors Into The Picture</h3><ul>
 <li><p>Encoders</p>
 <ul>
 <li><p>Encoder Structure</p>
@@ -265,7 +265,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="Representing-The-Order-of-The-Sequence-Using-Positional-Encoding"><a href="#Representing-The-Order-of-The-Sequence-Using-Positional-Encoding" class="headerlink" title="Representing The Order of The Sequence Using Positional Encoding"></a>Representing The Order of The Sequence Using Positional Encoding</h4><ul>
+<h3 id="4-Representing-The-Order-of-The-Sequence-Using-Positional-Encoding"><a href="#4-Representing-The-Order-of-The-Sequence-Using-Positional-Encoding" class="headerlink" title="4. Representing The Order of The Sequence Using Positional Encoding"></a>4. Representing The Order of The Sequence Using Positional Encoding</h3><ul>
 <li>Aim: To give the model a sense of the order of the words</li>
 <li>Method: Add positional encoding vectors</li>
 <li>Implementation: </li>
@@ -273,11 +273,11 @@
 <blockquote>
 <p>Question3: How to implement position encoding? list some ideas</p>
 </blockquote>
-<h4 id="The-Residuals"><a href="#The-Residuals" class="headerlink" title="The Residuals"></a>The Residuals</h4><ul>
+<h3 id="5-The-Residuals"><a href="#5-The-Residuals" class="headerlink" title="5. The Residuals"></a>5. The Residuals</h3><ul>
 <li>Each sub-layer(Self-Attention, FFNN) has a residual connection around it. And it is followed by a layer-normalization step</li>
 <li>Formula: $Output = LayerNorm(X + Z)$</li>
 </ul>
-<h4 id="The-Decoder-Side"><a href="#The-Decoder-Side" class="headerlink" title="The Decoder Side"></a>The Decoder Side</h4><ul>
+<h3 id="6-The-Decoder-Side"><a href="#6-The-Decoder-Side" class="headerlink" title="6. The Decoder Side"></a>6. The Decoder Side</h3><ul>
 <li><p>Self Attention Layer</p>
 <ul>
 <li>Aim: give attention on the earlier positions in the output sequence</li>
@@ -303,7 +303,7 @@
 <li><p>Output Layer: Linear + Softmax</p>
 </li>
 </ul>
-<h4 id="The-Loss-Function"><a href="#The-Loss-Function" class="headerlink" title="The Loss Function"></a>The Loss Function</h4><ul>
+<h3 id="7-The-Loss-Function"><a href="#7-The-Loss-Function" class="headerlink" title="7. The Loss Function"></a>7. The Loss Function</h3><ul>
 <li>Selection: Cross Entropy / KL divergence</li>
 <li>Output Mode: Greedy Decoding / Beam Search</li>
 </ul>
