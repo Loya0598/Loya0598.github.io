@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Transformer - Loya&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> reading/coding </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Yating Luo</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Illustrated-Transformer文章阅读"><span class="toc-text">The Illustrated Transformer文章阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#网页链接：http-jalammar-github-io-illustrated-transformer"><span class="toc-text">网页链接：http:&#x2F;&#x2F;jalammar.github.io&#x2F;illustrated-transformer&#x2F;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#阅读时间：2020-07-03"><span class="toc-text">阅读时间：2020.07.03</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Simple-Intro"><span class="toc-text">Simple Intro</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#A-High-Level-Look"><span class="toc-text">A High-Level Look</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Bringing-The-Tensors-Into-The-Picture"><span class="toc-text">Bringing The Tensors Into The Picture</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Representing-The-Order-of-The-Sequence-Using-Positional-Encoding"><span class="toc-text">Representing The Order of The Sequence Using Positional Encoding</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#The-Residuals"><span class="toc-text">The Residuals</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#The-Decoder-Side"><span class="toc-text">The Decoder Side</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#The-Loss-Function"><span class="toc-text">The Loss Function</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> reading/coding </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Transformer
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2020-07-03 20:45:59</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#paper notes" title="paper notes">paper notes</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h3 id="The-Illustrated-Transformer文章阅读"><a href="#The-Illustrated-Transformer文章阅读" class="headerlink" title="The Illustrated Transformer文章阅读"></a>The Illustrated Transformer文章阅读</h3><h4 id="网页链接：http-jalammar-github-io-illustrated-transformer"><a href="#网页链接：http-jalammar-github-io-illustrated-transformer" class="headerlink" title="网页链接：http://jalammar.github.io/illustrated-transformer/"></a>网页链接：<a href="http://jalammar.github.io/illustrated-transformer/" target="_blank" rel="noopener">http://jalammar.github.io/illustrated-transformer/</a></h4><h4 id="阅读时间：2020-07-03"><a href="#阅读时间：2020-07-03" class="headerlink" title="阅读时间：2020.07.03"></a>阅读时间：2020.07.03</h4><hr>
+<h4 id="Simple-Intro"><a href="#Simple-Intro" class="headerlink" title="Simple Intro"></a>Simple Intro</h4><ul>
+<li>A model that uses attention to boost the speed</li>
+<li>Outperforms the <strong>Google Neural Machine Translation model</strong></li>
+<li>Parallelization</li>
+</ul>
+<h4 id="A-High-Level-Look"><a href="#A-High-Level-Look" class="headerlink" title="A High-Level Look"></a>A High-Level Look</h4><ul>
+<li><p>Sentence1 $\rightarrow$ <strong>Model</strong> $\rightarrow$ Sentence2</p>
+</li>
+<li><p>Sentence1 $\rightarrow$ <strong>Encoder</strong> $\rightarrow$ <strong>Decoder</strong> $\rightarrow$ Sentence2</p>
+</li>
+<li><p>Sentence1 $\rightarrow$ <strong>Stack(Encoder, 6)</strong> $\rightarrow$ <strong>Stack(Decoder, 6)</strong> $\rightarrow$ Sentence2</p>
+<ul>
+<li>Encoders don’t share weights</li>
+</ul>
+</li>
+<li><p>Sentence1 $\rightarrow$ <strong>Stack(Self-Attention + FFNN, 6)</strong> $\rightarrow$ <strong>Stack(Self-Attention + Encoder-Decoder Attention + FFNN, 6)</strong> $\rightarrow$ Sentence2</p>
+<blockquote>
+<p>Question1: The exact same feed-forward network is independently applied to each position.</p>
+<p>Answer1: For each position, FFNN is the same, so it can be done in parallel.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="Bringing-The-Tensors-Into-The-Picture"><a href="#Bringing-The-Tensors-Into-The-Picture" class="headerlink" title="Bringing The Tensors Into The Picture"></a>Bringing The Tensors Into The Picture</h4><ul>
+<li><p>Encoders</p>
+<ul>
+<li><p>Encoder Structure</p>
+<ul>
+<li>Input: [Batch_Size, Seq_Len, Hidden_Dim1]</li>
+<li>Layers: Self-Attention Layer + feed forward Layer</li>
+<li>Output: [Batch_Size, Seq_Len, Hidden_Dim2]</li>
+</ul>
+</li>
+<li><p>Self-Attention:</p>
+<ul>
+<li><p>Concept: Using the representation of other positions to encode the word that is processing now.</p>
+</li>
+<li><p>Details:</p>
+<ul>
+<li><p>Input Vector $x$ / Query Vector $q$ / Key Vector $k$ / Value Vector $v$</p>
+</li>
+<li><p>First Step:</p>
+<ul>
+<li><p>Query Vector $q = x * W^Q$</p>
+</li>
+<li><p>Key Vector $k = x * W^K$</p>
+</li>
+<li><p>Value Vector $v = x * W^V$</p>
+</li>
+<li><p>$W^Q, W^K, W^V$ are the parameters trained during the training process</p>
+<blockquote>
+<p>Dimension of new vectors: 64</p>
+<p>Dimension of input vectors: 512</p>
+<p>They don’t HAVE to be smaller, this is an architecture choice to make the computation of multiheaded attention (mostly) constant</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Second Step:</p>
+<ul>
+<li>Score: When processing the word in position i, the score at position j is <strong>Query Vector $q_i$ <em> Key Vector $k_j$</em></strong> (dot product)</li>
+</ul>
+</li>
+<li><p>Third Step:</p>
+<ul>
+<li>divide the scores by $d$, $d = \sqrt{d_k}$</li>
+</ul>
+</li>
+<li><p>Forth Step:</p>
+<ul>
+<li>Score $\rightarrow$Softmax Layer</li>
+</ul>
+</li>
+<li><p>Fifth Step:</p>
+<ul>
+<li>Softmax Score * Value vector</li>
+</ul>
+</li>
+<li><p>Sixth Step:</p>
+<ul>
+<li>Sum up the weighted value vectors</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Matrix Form:</p>
+<ul>
+<li>Input Data: $X$</li>
+<li>Query Vector: $Q = XW^Q$</li>
+<li>Key Vector: $K = XW^K$</li>
+<li>Value Vector: $V = XW^V$</li>
+<li>Output: $Z = softmax(\frac{QK^T}{\sqrt{d_k}})V$</li>
+</ul>
+</li>
+<li><p>“Many Heads”</p>
+<ul>
+<li>Improvements:<ul>
+<li>Expands the model’s ability to focus on different positions</li>
+<li>Gives the attention layer multiple “representation subspaces”<ul>
+<li>Using multiple sets of Query/Key/Value weight matrices</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Implementation:<ul>
+<li>How to condense multiple outputs:<ul>
+<li>Concatenate and multiply them by an additional weight matrix $W^O$</li>
+<li>Formula: $O = Concat(Z) * W^O$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Question2: If we add all the attention heads to the picture, however, things can be harder to interpret, So how to interpret this weights attention score?</p>
+<p>Answer2: Interpret the weight of the head one by one?</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Representing-The-Order-of-The-Sequence-Using-Positional-Encoding"><a href="#Representing-The-Order-of-The-Sequence-Using-Positional-Encoding" class="headerlink" title="Representing The Order of The Sequence Using Positional Encoding"></a>Representing The Order of The Sequence Using Positional Encoding</h4><ul>
+<li>Aim: To give the model a sense of the order of the words</li>
+<li>Method: Add positional encoding vectors</li>
+<li>Implementation: </li>
+</ul>
+<blockquote>
+<p>Question3: How to implement position encoding? list some ideas</p>
+</blockquote>
+<h4 id="The-Residuals"><a href="#The-Residuals" class="headerlink" title="The Residuals"></a>The Residuals</h4><ul>
+<li>Each sub-layer(Self-Attention, FFNN) has a residual connection around it. And it is followed by a layer-normalization step</li>
+<li>Formula: $Output = LayerNorm(X + Z)$</li>
+</ul>
+<h4 id="The-Decoder-Side"><a href="#The-Decoder-Side" class="headerlink" title="The Decoder Side"></a>The Decoder Side</h4><ul>
+<li><p>Self Attention Layer</p>
+<ul>
+<li>Aim: give attention on the earlier positions in the output sequence</li>
+<li>Implementation: mask future position before the softmax step</li>
+</ul>
+<blockquote>
+<p>Question4: How to implement it in parallel, it looks like it can only process one word at each forward step.</p>
+<p>Answer4: Training - parallel</p>
+</blockquote>
+</li>
+<li><p>Encoder-Decoder Attention Layer</p>
+<ul>
+<li>Using the output of the top encoder to calculate the attention weight of input</li>
+<li>Formula: $K = XK_{enc_dec}$, $V = XV_{enc_dec}$</li>
+</ul>
+<blockquote>
+<p>Question5: What’s the query vector?</p>
+<p>Answer5: From the layer below it</p>
+</blockquote>
+</li>
+<li><p>FFNN</p>
+</li>
+<li><p>Output Layer: Linear + Softmax</p>
+</li>
+</ul>
+<h4 id="The-Loss-Function"><a href="#The-Loss-Function" class="headerlink" title="The Loss Function"></a>The Loss Function</h4><ul>
+<li>Selection: Cross Entropy / KL divergence</li>
+<li>Output Mode: Greedy Decoding / Beam Search</li>
+</ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        <li>
+            <a target="_blank" href="https://twitter.com/Loya">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-twitter"></i>
+                            </span>
+            </a>
+        </li>
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/Loya0598">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud" target="_blank" rel="noopener">AirCloud</a></p>
+</footer>
+
+
+
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            processEscapes: true
+          }
+        });
+      </script>
+    
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+            tex2jax: {
+              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+          });
+      </script>
+    
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+              var all = MathJax.Hub.getAllJax(), i;
+              for(i=0; i < all.length; i += 1) {
+                  all[i].SourceElement().parentNode.className += ' has-jax';
+              }
+          });
+      </script>
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        if( '' || '')
+        var disqus_config = function () {
+            this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://loya-blog.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+
+
+
+</html>
