@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        The_Annotated_Transformer - Loya&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> reading/coding </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Yating Luo</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Annotated-Transformer-文章阅读"><span class="toc-text">The Annotated Transformer 文章阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#网页链接：http-nlp-seas-harvard-edu-2018-04-03-attention-html"><span class="toc-text">网页链接：http:&#x2F;&#x2F;nlp.seas.harvard.edu&#x2F;2018&#x2F;04&#x2F;03&#x2F;attention.html</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#阅读时间：2020-07-05"><span class="toc-text">阅读时间：2020.07.05</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Background"><span class="toc-text">1. Background</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Model-Architecture"><span class="toc-text">2. Model Architecture</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Training"><span class="toc-text">3. Training</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> reading/coding </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        The_Annotated_Transformer
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2020-07-05 16:32:38</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#paper notes" title="paper notes">paper notes</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h2 id="The-Annotated-Transformer-文章阅读"><a href="#The-Annotated-Transformer-文章阅读" class="headerlink" title="The Annotated Transformer 文章阅读"></a>The Annotated Transformer 文章阅读</h2><h3 id="网页链接：http-nlp-seas-harvard-edu-2018-04-03-attention-html"><a href="#网页链接：http-nlp-seas-harvard-edu-2018-04-03-attention-html" class="headerlink" title="网页链接：http://nlp.seas.harvard.edu/2018/04/03/attention.html"></a>网页链接：<a href="http://nlp.seas.harvard.edu/2018/04/03/attention.html" target="_blank" rel="noopener">http://nlp.seas.harvard.edu/2018/04/03/attention.html</a></h3><h3 id="阅读时间：2020-07-05"><a href="#阅读时间：2020-07-05" class="headerlink" title="阅读时间：2020.07.05"></a>阅读时间：2020.07.05</h3><hr>
+<h3 id="1-Background"><a href="#1-Background" class="headerlink" title="1. Background"></a>1. Background</h3><ul>
+<li><p>Replace RNN and convolution with <strong>Attention Mechanism</strong></p>
+</li>
+<li><p>RNN: sequentially, not in parallel</p>
+</li>
+<li><p>Convolution: the number of operations required to relate signals from two arbitrary input positions grows in the distance between positions</p>
+<blockquote>
+<p>Todo: 去了解一下ByteNet和ConvS2S，用卷积网络如何实现位置与位置之间的联系</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="2-Model-Architecture"><a href="#2-Model-Architecture" class="headerlink" title="2. Model Architecture"></a>2. Model Architecture</h3><ul>
+<li><p>Encoder:</p>
+<ul>
+<li>SublayerConnection: LayerNorm + SubLayer + Dropout + Residual</li>
+<li>EncoderLayer: SubLayerConnection1(self_attention) + SubLayerConnection2(feed_forward)</li>
+<li>Encoder: EncoderLayer * n + LayerNorm</li>
+</ul>
+</li>
+<li><p>Decoder:</p>
+<ul>
+<li>SublayerConnection: LayerNorm + SubLayer + Dropout + Residual</li>
+<li>DecoderLayer: SubLayerConnection1(self_attention) + SubLayerConnection2(src_attention) + SubLayerConnection3(feed_forward)</li>
+<li>Decoder: DecoderLayer * n + LayerNorm</li>
+<li>Specific method:<ul>
+<li>subsequent_mask: ensure that the predictions for position i can depend only on the known outputs at positions less than i</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Attention(Dot-Product):</p>
+<ul>
+<li><p>Formula: $Attention(Q, K, V) = softmax(\frac{QK^T}{\sqrt{d_k}}V)$</p>
+<ul>
+<li>Why $\sqrt{d_k}$:<ul>
+<li>To illustrate why the dot products get large, assume that the components of q and k are independent random variables with mean 0 and variance 1. Then their dot product, $q⋅k=\sum_{i = 1}^{d_k}q_ik_i$, has mean 0 and variance $d_k$.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Another Implementation: additive attention</p>
+<ul>
+<li><p>Additive attention computes the compatibility function using a feed-forward network with a single hidden layer.</p>
+<blockquote>
+<p>去细致了解Additive attention的实现方法</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>MultiHeadAttention:</p>
+<ul>
+<li>$MultiHead(Q, K, V)=Concat(head_1, head_2, …, head_h)W^O$</li>
+<li>Where $head_i = Attention(QW_i^Q, KW_i^K, VW_i^V)$ and $W_i^Q \in \mathbb{R}^{d_{model} \times d_k}, W_i^K \in \mathbb{R}^{d_{model} \times d_k}, W_i^V \in \mathbb{R}^{d_{model} \times d_v}, W^O \in \mathbb{R}^{hd_v \times d_{model}}$</li>
+</ul>
+</li>
+<li><p>Uses:</p>
+<ul>
+<li>Encoder-Decoder Attention Layer:<ul>
+<li>Q: the output of the previous decoder layer</li>
+<li>K: the output of the encoder</li>
+<li>V: the output of the encoder</li>
+</ul>
+</li>
+<li>Self Attention Layer in Encoder:<ul>
+<li>Q, K, V: the output of the previous decoder layer</li>
+</ul>
+</li>
+<li>Self Attention Layer in Decoder:<ul>
+<li>Q, K, V: the output of the previous decoder layer</li>
+<li>each position in the decoder to attend to all positions in the decoder up to and including that position</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Position-wise Feed-Forward Networks:</p>
+</li>
+<li><p>Embeddings and Softmax:</p>
+</li>
+<li><p>Positional Encoding:</p>
+<ul>
+<li><p>Why: model contains no recurrence and no convolution, so it lacks information about relative or absolute distance of the tokens</p>
+</li>
+<li><p>Implementation: cosine functions of different frequencies:</p>
+<ul>
+<li>$PE_{(pos, 2i)} = sin(pos/10000^{2i / d_{model}})$</li>
+<li>$PE_{(pos, 2i + 1)} = cos(pos/10000^{2i / d_{model}})$</li>
+</ul>
+<blockquote>
+<p>再去细致的了解一些positional Encoding的一些方法</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Full Model</p>
+</li>
+</ul>
+<h3 id="3-Training"><a href="#3-Training" class="headerlink" title="3. Training"></a>3. Training</h3><ul>
+<li><p>Batches and Masking</p>
+</li>
+<li><p>Training Loop</p>
+</li>
+<li><p>Training Data and Batching</p>
+</li>
+<li><p>Optimizer</p>
+</li>
+<li><p>Regularization</p>
+<ul>
+<li>Label Smoothing</li>
+</ul>
+<blockquote>
+<p>How to do?</p>
+</blockquote>
+</li>
+<li></li>
+</ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        <li>
+            <a target="_blank" href="https://twitter.com/Loya">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-twitter"></i>
+                            </span>
+            </a>
+        </li>
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/Loya0598">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud" target="_blank" rel="noopener">AirCloud</a></p>
+</footer>
+
+
+
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            processEscapes: true
+          }
+        });
+      </script>
+    
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+            tex2jax: {
+              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+          });
+      </script>
+    
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+              var all = MathJax.Hub.getAllJax(), i;
+              for(i=0; i < all.length; i += 1) {
+                  all[i].SourceElement().parentNode.className += ' has-jax';
+              }
+          });
+      </script>
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        if( '' || '')
+        var disqus_config = function () {
+            this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://loya-blog.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+
+
+
+</html>
