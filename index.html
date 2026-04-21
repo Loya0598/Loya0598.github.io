@@ -1107,7 +1107,7 @@
     async function loadWorldMap() {
       countriesLayer.innerHTML = '<text x="50%" y="50%" text-anchor="middle" fill="#64748b" font-size="18">地图加载中…</text>';
       try {
-        const response = await fetch('./world.geojson');
+        const response = await fetch('./world_merged_pretty.geojson');
         const geojson = await response.json();
         worldFeatures = geojson.features || [];
 
