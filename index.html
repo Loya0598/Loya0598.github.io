@@ -275,7 +275,12 @@
       width: 100%;
       height: 100%;
       display: block;
-      touch-action: pan-x pan-y;
+      touch-action: none;
+      cursor: grab;
+    }
+
+    svg#worldMap.dragging {
+      cursor: grabbing;
     }
 
     .country-path {
@@ -589,6 +594,9 @@
         <div class="toolbar-group">
           <button class="primary" id="resetViewBtn">重置视图</button>
           <button id="showRecordedBtn">仅看有记录国家</button>
+          <button id="zoomInBtn">放大</button>
+          <button id="zoomOutBtn">缩小</button>
+          <button id="resetZoomBtn">重置缩放</button>
         </div>
         <div class="toolbar-group">
           <button id="reloadDataBtn">重新读取 data.json</button>
@@ -617,6 +625,8 @@
     let activeCountryId = null;
     let showRecordedOnly = false;
     let worldFeatures = [];
+    let zoomBehavior = null;
+    let svgSelection = null;
 
     const countriesLayer = document.getElementById('countriesLayer');
     const tooltip = document.getElementById('tooltip');
@@ -631,6 +641,10 @@
     const reloadDataBtn = document.getElementById('reloadDataBtn');
     const saveJsonBtn = document.getElementById('saveJsonBtn');
     const mapShell = document.querySelector('.map-shell');
+    const svg = document.getElementById('worldMap');
+    const zoomInBtn = document.getElementById('zoomInBtn');
+    const zoomOutBtn = document.getElementById('zoomOutBtn');
+    const resetZoomBtn = document.getElementById('resetZoomBtn');
 
     function escapeHtml(str = '') {
       return String(str)
@@ -1105,6 +1119,32 @@
       toggleBlock(`noteEditor-${bookIndex}-${noteIndex}`);
     }
 
+    function initializeZoom() {
+      svgSelection = d3.select(svg);
+      zoomBehavior = d3.zoom()
+        .scaleExtent([1, 8])
+        .translateExtent([[0, 0], [1000, 520]])
+        .extent([[0, 0], [1000, 520]])
+        .on('start', () => {
+          svg.classList.add('dragging');
+        })
+        .on('zoom', (event) => {
+          countriesLayer.setAttribute('transform', event.transform.toString());
+        })
+        .on('end', () => {
+          svg.classList.remove('dragging');
+        });
+
+      svgSelection.call(zoomBehavior);
+      svgSelection.on('dblclick.zoom', null);
+    }
+
+    function resetZoom(animated = true) {
+      if (!svgSelection || !zoomBehavior) return;
+      const action = animated ? svgSelection.transition().duration(250) : svgSelection;
+      action.call(zoomBehavior.transform, d3.zoomIdentity);
+    }
+
     async function loadWorldMap() {
       countriesLayer.innerHTML = '<text x="50%" y="50%" text-anchor="middle" fill="#64748b" font-size="18">地图加载中…</text>';
       try {
@@ -1139,6 +1179,8 @@
           countriesLayer.appendChild(pathNode);
         });
 
+        initializeZoom();
+        resetZoom(false);
         highlightActiveCountry();
         renderDetailPanel();
       } catch (error) {
@@ -1173,6 +1215,7 @@
       showRecordedOnly = false;
       showRecordedBtn.textContent = '仅看有记录国家';
       activeCountryId = countryData.countries[0]?.id || null;
+      resetZoom(true);
       highlightActiveCountry();
       renderCountryList();
       renderDetailPanel();
@@ -1182,6 +1225,20 @@
       showRecordedOnly = !showRecordedOnly;
       showRecordedBtn.textContent = showRecordedOnly ? '显示全部国家' : '仅看有记录国家';
       highlightActiveCountry();
+    });
+
+    zoomInBtn.addEventListener('click', () => {
+      if (!svgSelection || !zoomBehavior) return;
+      svgSelection.transition().duration(200).call(zoomBehavior.scaleBy, 1.25);
+    });
+
+    zoomOutBtn.addEventListener('click', () => {
+      if (!svgSelection || !zoomBehavior) return;
+      svgSelection.transition().duration(200).call(zoomBehavior.scaleBy, 0.8);
+    });
+
+    resetZoomBtn.addEventListener('click', () => {
+      resetZoom(true);
     });
 
     reloadDataBtn.addEventListener('click', async () => {
