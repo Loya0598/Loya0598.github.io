@@ -579,7 +579,7 @@
       <section class="card">
         <h2>本地数据说明</h2>
         <div class="footer-note">
-          书籍和笔记的在线修改会保存在当前浏览器的 localStorage 中。点击“保存并导出 data.json”会下载当前最新数据，方便你替换 Git 仓库中的 data.json。
+          不再内置默认国家数据。页面启动时只从 data.json 读取；保存并导出时，会自动删除那些既没有图片也没有书籍的国家条目。
         </div>
       </section>
     </aside>
@@ -591,6 +591,7 @@
           <button id="showRecordedBtn">仅看有记录国家</button>
         </div>
         <div class="toolbar-group">
+          <button id="reloadDataBtn">重新读取 data.json</button>
           <button id="saveJsonBtn">保存并导出 data.json</button>
         </div>
       </div>
@@ -611,89 +612,9 @@
   <script>
     const STORAGE_KEY = 'world-reading-map-editable-v1';
 
-    const DEFAULT_COUNTRY_DATA = {
-      countries: [
-        {
-          id: "ITA",
-          name: "Italy",
-          photos: [
-            {
-              src: "https://images.unsplash.com/photo-1525874684015-58379d421a52?auto=format&fit=crop&w=900&q=80",
-              caption: "罗马街角与旧书店氛围"
-            }
-          ],
-          books: [
-            {
-              title: "The Name of the Rose",
-              author: "Umberto Eco",
-              cover: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=500&q=80",
-              notes: [
-                {
-                  title: "阅读随记",
-                  content: "这本书和意大利的历史空间关系非常强，阅读时会不断联想到修道院、档案与中世纪秩序。"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          id: "JPN",
-          name: "Japan",
-          photos: [],
-          books: [
-            {
-              title: "Kafka on the Shore",
-              author: "Haruki Murakami",
-              cover: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=500&q=80",
-              notes: [
-                {
-                  title: "氛围记录",
-                  content: "城市、音乐与孤独感彼此缠绕，很适合在旅行途中读。"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          id: "FRA",
-          name: "France",
-          photos: [],
-          books: [
-            {
-              title: "The Little Prince",
-              author: "Antoine de Saint-Exupéry",
-              cover: "https://images.unsplash.com/photo-1511108690759-009324a90311?auto=format&fit=crop&w=500&q=80",
-              notes: [
-                {
-                  title: "轻与深",
-                  content: "看似轻巧，但许多句子都带有很强的哲理密度。"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    };
-
-    function clone(obj) {
-      return JSON.parse(JSON.stringify(obj));
-    }
-
-    function loadEditableData() {
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (!raw) return clone(DEFAULT_COUNTRY_DATA);
-        const parsed = JSON.parse(raw);
-        if (!parsed || !Array.isArray(parsed.countries)) return clone(DEFAULT_COUNTRY_DATA);
-        return parsed;
-      } catch (e) {
-        return clone(DEFAULT_COUNTRY_DATA);
-      }
-    }
-
-    let countryData = loadEditableData();
-    let dataMap = new Map(countryData.countries.map(item => [item.id, item]));
-    let activeCountryId = countryData.countries[0]?.id || null;
+    let countryData = { countries: [] };
+    let dataMap = new Map();
+    let activeCountryId = null;
     let showRecordedOnly = false;
     let worldFeatures = [];
 
@@ -707,6 +628,7 @@
     const statPhotos = document.getElementById('statPhotos');
     const resetViewBtn = document.getElementById('resetViewBtn');
     const showRecordedBtn = document.getElementById('showRecordedBtn');
+    const reloadDataBtn = document.getElementById('reloadDataBtn');
     const saveJsonBtn = document.getElementById('saveJsonBtn');
     const mapShell = document.querySelector('.map-shell');
 
@@ -719,13 +641,92 @@
         .replace(/'/g, '&#39;');
     }
 
+    function clone(obj) {
+      return JSON.parse(JSON.stringify(obj));
+    }
+
+    function normalizeCountryRecord(item) {
+      return {
+        id: item?.id || '',
+        name: item?.name || item?.id || '',
+        photos: Array.isArray(item?.photos) ? item.photos : [],
+        books: Array.isArray(item?.books)
+          ? item.books.map(book => ({
+              title: book?.title || '',
+              author: book?.author || '',
+              cover: book?.cover || '',
+              notes: Array.isArray(book?.notes)
+                ? book.notes.map(note => ({
+                    title: note?.title || '',
+                    content: note?.content || ''
+                  }))
+                : []
+            }))
+          : []
+      };
+    }
+
+    function hasActualContent(item) {
+      const photos = Array.isArray(item?.photos) ? item.photos.length : 0;
+      const books = Array.isArray(item?.books) ? item.books.length : 0;
+      return photos > 0 || books > 0;
+    }
+
+    function normalizeCountryData(raw) {
+      const countries = Array.isArray(raw?.countries) ? raw.countries : [];
+      return {
+        countries: countries
+          .map(normalizeCountryRecord)
+          .filter(item => item.id)
+          .filter(hasActualContent)
+      };
+    }
+
+    async function loadDataFromFile() {
+      const response = await fetch('./data.json', { cache: 'no-store' });
+      if (!response.ok) {
+        throw new Error('data.json 加载失败');
+      }
+      const raw = await response.json();
+      return normalizeCountryData(raw);
+    }
+
     function syncDataMap() {
       dataMap = new Map(countryData.countries.map(item => [item.id, item]));
     }
 
+    function setCountryData(data) {
+      countryData = normalizeCountryData(data);
+      syncDataMap();
+      activeCountryId = countryData.countries[0]?.id || null;
+    }
+
     function persistData() {
+      countryData = normalizeCountryData(countryData);
       syncDataMap();
       localStorage.setItem(STORAGE_KEY, JSON.stringify(countryData));
+    }
+
+    async function loadEditableData({ forceFile = false } = {}) {
+      if (!forceFile) {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            const normalized = normalizeCountryData(parsed);
+            if (normalized.countries.length > 0) {
+              return normalized;
+            }
+          }
+        } catch (e) {}
+      }
+
+      try {
+        const fileData = await loadDataFromFile();
+        return fileData;
+      } catch (e) {
+        return { countries: [] };
+      }
     }
 
     function getCountryRecord(id) {
@@ -743,7 +744,7 @@
 
     function hasRecord(id) {
       const item = getCountryRecord(id);
-      return !!(item && ((item.photos && item.photos.length) || (item.books && item.books.length)));
+      return !!(item && hasActualContent(item));
     }
 
     function getSummary(id) {
@@ -779,7 +780,7 @@
         .sort((a, b) => a.name.localeCompare(b.name));
 
       if (!items.length) {
-        countryList.innerHTML = '<div class="empty">没有匹配到国家。</div>';
+        countryList.innerHTML = '<div class="empty">data.json 中当前没有可展示的国家记录。</div>';
         return;
       }
 
@@ -856,7 +857,7 @@
         <div class="detail-header">
           <div>
             <h2 class="detail-title">${escapeHtml(name)}</h2>
-            <div class="detail-subtitle">书籍和笔记支持在线添加、编辑、删除，并自动保存在当前浏览器本地。</div>
+            <div class="detail-subtitle">数据来源于 data.json；当前浏览器内的编辑会先存入 localStorage，导出时会自动清理空国家。</div>
           </div>
           <button onclick="clearSelection()">关闭</button>
         </div>
@@ -897,7 +898,7 @@
             <div class="form-grid" style="margin-top:10px;">
               <div>
                 <div class="subtle-label">封面图片链接（可选）</div>
-                <input class="form-input" id="newBookCover" placeholder="https://..." />
+                <input class="form-input" id="newBookCover" placeholder="https://... 或 assets/covers/..." />
               </div>
             </div>
             <div class="inline-actions">
@@ -1107,7 +1108,7 @@
     async function loadWorldMap() {
       countriesLayer.innerHTML = '<text x="50%" y="50%" text-anchor="middle" fill="#64748b" font-size="18">地图加载中…</text>';
       try {
-        const response = await fetch('./world_merged_pretty.geojson');
+        const response = await fetch('./world.geojson');
         const geojson = await response.json();
         worldFeatures = geojson.features || [];
 
@@ -1153,6 +1154,16 @@
       renderDetailPanel();
     }
 
+    async function reloadDataFromFile() {
+      const fileData = await loadEditableData({ forceFile: true });
+      setCountryData(fileData);
+      localStorage.removeItem(STORAGE_KEY);
+      renderStats();
+      renderCountryList(searchInput.value);
+      highlightActiveCountry();
+      renderDetailPanel();
+    }
+
     searchInput.addEventListener('input', () => {
       renderCountryList(searchInput.value);
     });
@@ -1173,9 +1184,14 @@
       highlightActiveCountry();
     });
 
+    reloadDataBtn.addEventListener('click', async () => {
+      await reloadDataFromFile();
+    });
+
     saveJsonBtn.addEventListener('click', () => {
       persistData();
-      const blob = new Blob([JSON.stringify(countryData, null, 2)], { type: 'application/json' });
+      const cleaned = normalizeCountryData(countryData);
+      const blob = new Blob([JSON.stringify(cleaned, null, 2)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
@@ -1195,9 +1211,15 @@
     window.toggleNoteCreator = toggleNoteCreator;
     window.toggleNoteEditor = toggleNoteEditor;
 
-    renderStats();
-    renderCountryList();
-    loadWorldMap();
+    async function init() {
+      const loaded = await loadEditableData();
+      setCountryData(loaded);
+      renderStats();
+      renderCountryList();
+      await loadWorldMap();
+    }
+
+    init();
   </script>
 </body>
 </html>
