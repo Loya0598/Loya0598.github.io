@@ -1,0 +1,50 @@
+{
+  "countries": [
+    {
+      "id": "ITA",
+      "name": "Italy",
+      "photos": [
+        {
+          "src": "assets/photos/italy/rome-bookstore.jpg",
+          "caption": "罗马街角与旧书店氛围"
+        }
+      ],
+      "books": [
+        {
+          "title": "The Name of the Rose",
+          "author": "Umberto Eco",
+          "cover": "assets/covers/the-name-of-the-rose.jpg",
+          "notes": [
+            {
+              "title": "阅读随记",
+              "content": "这本书和意大利的历史空间关系非常强。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "JPN",
+      "name": "Japan",
+      "photos": [
+        {
+          "src": "assets/photos/japan/tokyo-bookstore.jpg",
+          "caption": "东京书店"
+        }
+      ],
+      "books": [
+        {
+          "title": "Kafka on the Shore",
+          "author": "Haruki Murakami",
+          "cover": "assets/covers/kafka-on-the-shore.jpg",
+          "notes": [
+            {
+              "title": "氛围记录",
+              "content": "城市、音乐与孤独感彼此缠绕。"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
