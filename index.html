@@ -748,9 +748,16 @@
     function getOrCreateCountryRecord(id, fallbackName) {
       let record = getCountryRecord(id);
       if (record) return record;
-      record = { id, name: fallbackName || id, photos: [], books: [] };
+
+      record = {
+        id,
+        name: fallbackName || id,
+        photos: [],
+        books: []
+      };
+
       countryData.countries.push(record);
-      persistData();
+      syncDataMap();
       return record;
     }
 
