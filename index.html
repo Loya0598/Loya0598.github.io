@@ -599,7 +599,6 @@
           <button id="resetZoomBtn">重置缩放</button>
         </div>
         <div class="toolbar-group">
-          <button id="reloadDataBtn">重新读取 data.json</button>
           <button id="saveJsonBtn">保存并导出 data.json</button>
         </div>
       </div>
@@ -638,7 +637,6 @@
     const statPhotos = document.getElementById('statPhotos');
     const resetViewBtn = document.getElementById('resetViewBtn');
     const showRecordedBtn = document.getElementById('showRecordedBtn');
-    const reloadDataBtn = document.getElementById('reloadDataBtn');
     const saveJsonBtn = document.getElementById('saveJsonBtn');
     const mapShell = document.querySelector('.map-shell');
     const svg = document.getElementById('worldMap');
@@ -1196,16 +1194,6 @@
       renderDetailPanel();
     }
 
-    async function reloadDataFromFile() {
-      const fileData = await loadEditableData({ forceFile: true });
-      setCountryData(fileData);
-      localStorage.removeItem(STORAGE_KEY);
-      renderStats();
-      renderCountryList(searchInput.value);
-      highlightActiveCountry();
-      renderDetailPanel();
-    }
-
     searchInput.addEventListener('input', () => {
       renderCountryList(searchInput.value);
     });
@@ -1241,9 +1229,6 @@
       resetZoom(true);
     });
 
-    reloadDataBtn.addEventListener('click', async () => {
-      await reloadDataFromFile();
-    });
 
     saveJsonBtn.addEventListener('click', () => {
       persistData();
